@@ -62,7 +62,17 @@ char humanChoice(char board[3][3],char XO) {
 }
 /*===================================================================================*/
 char nextChoice(char board[3][3],char XO) {
-
+	char choice;
+	char choices[]="abcdefghi"; // sets up array for possible squares
+	int i;
+	for(i=0;i<8;i++){ // cycles through squares 
+		choice=choices[i];
+		if (isAvail(board,choice)) { // finds next open square and will choose it
+			printf("Computer chose '%c' since it is the next available slot.\n", choice);
+			return choice;
+		}
+		else {continue;}
+	}
 return ' ';
 }
 /*===================================================================================*/
