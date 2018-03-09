@@ -65,7 +65,7 @@ char nextChoice(char board[3][3],char XO) {
 	char choice;
 	char choices[]="abcdefghi"; // sets up array for possible squares
 	int i;
-	for(i=0;i<8;i++){ // cycles through squares 
+	for(i=0;i<8;i++){ // cycles through squares
 		choice=choices[i];
 		if (isAvail(board,choice)) { // finds next open square and will choose it
 			printf("Computer chose '%c' since it is the next available slot.\n", choice);
@@ -77,7 +77,19 @@ return ' ';
 }
 /*===================================================================================*/
 char randChoice(char board[3][3],char XO) {
-
+	char choices[]="abcdefghi";
+	char avail[9];
+	int navail=0;
+	int i;
+	for(i=0;i<8;i++) {
+		if (isAvail(board,choices[i])) {
+			avail[navail]=choices[i];
+			navail++;
+		}
+	}
+	int cnum=rand()%navail;
+	printf("Computer chooses random available value %c\n",avail[cnum]);
+	return avail[cnum];
 }
 /*===================================================================================*/
 char smartChoice(char board[3][3],char XO) {
