@@ -93,7 +93,45 @@ char randChoice(char board[3][3],char XO) {
 }
 /*===================================================================================*/
 char smartChoice(char board[3][3],char XO) {
-
+	char choices[]="abcdefghi"; // sets up array for possible squares
+	int j;
+	char win;
+	char block;
+	for(j=0; j<=7; j++) {  // checks for triples to win
+		win = ( trip1MoveWinner((getTriplet(board,j)), XO));
+			if (isPositionChar(win) && isAvail(board,	win)) {
+				printf("Computer chose '%c' since it is a smart move.\n", win);
+				return win;
+			}
+	}
+	for(j=0; j<=7; j++) {  //checks triples of opponent to block
+		block = ( trip1MoveWinner((getTriplet(board,j)), opponent(XO)));
+			if (isPositionChar(block) && isAvail(board,	block)) {
+				printf("Computer chose '%c' since it is a smart move.\n", block);
+				return block;
+		  }
+	}
+	if( isAvail(board, choices[0])) {  // checks for available corners
+		printf("Computer chose '%c' since it is a smart move.\n", choices[0]);
+		return choices[0];
+	}
+	else if( isAvail(board, choices[2])) {
+		printf("Computer chose '%c' since it is a smart move.\n", choices[2]);
+		return choices[2];
+	}
+	else if( isAvail(board, choices[6])) {
+		printf("Computer chose '%c' since it is a smart move.\n", choices[6]);
+		return choices[6];
+	}
+	else if( isAvail(board, choices[8])) {
+		printf("Computer chose '%c' since it is a smart move.\n", choices[8]);
+		return choices[8];
+	}
+	else if( isAvail(board, choices[4])) { // last one checks for middle square
+		printf("Computer chose '%c' since it is a smart move.\n", choices[4]);
+		return choices[4];
+	}
+	return nextChoice(board, XO); // Chooses next Available square
 return  ' ';
 }
 /*===================================================================================*/
